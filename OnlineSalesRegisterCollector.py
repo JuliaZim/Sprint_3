@@ -48,19 +48,17 @@ class OnlineSalesRegisterCollector:
         if name not in self.__item_price:
             raise NameError("Позиция отсутствует в товарном справочнике")
         self.__name_items.append(name)
-        new_number_items = self.number_items + 1
+        new_number_items = self.number_items  + 1
         self.number_items = new_number_items
 
     # 3. Удалить товар из чека
     def delete_item_from_check(self, name):
-        try:
-            if name not in self.__name_items:
-                raise NameError("Позиция отсутствует в чеке")
-            self.__name_items.remove(name)
-            new_number_items = self.number_items - 1
-            self.number_items = new_number_items
-        except Exception as e:
-            print(e)
+        if name not in self.__name_items:
+            raise NameError("Позиция отсутствует в чеке")
+        self.__name_items.remove(name)
+        new_number_items = self.number_items - 1
+        self.number_items = new_number_items
+
 
     # 4. Посчитать общую стоимость товара
     def check_amount(self):
@@ -117,14 +115,12 @@ class OnlineSalesRegisterCollector:
     # 8. Метод, который возвращает номер телефона
     @staticmethod
     def get_telephone_number(telephone_number):
-        try:
             if len(telephone_number) < 10:
                 raise ValueError("Необходимо ввести цифры")
             if len(telephone_number) > 10:
                 raise ValueError('Необходимо ввести 10 цифр после "+7"')
             return f"+7{telephone_number}"
-        except Exception as e:
-            print(e)
+
 
     # 9. Преобразование даты
     @staticmethod
