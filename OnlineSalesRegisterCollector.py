@@ -41,18 +41,15 @@ class OnlineSalesRegisterCollector:
 
     # 2. Метод добавления товара в чек
     def add_item_to_cheque(self, name):
-        try:
-            if not 0 < len(name) <= 40:
-                raise ValueError(
-                    "Нельзя добавить товар, если в его названии нет символов или их больше 40"
-                )
-            if name not in self.__item_price:
-                raise NameError("Позиция отсутствует в товарном справочнике")
-            self.__name_items.append(name)
-            new_number_items = self.number_items + 1
-            self.number_items = new_number_items
-        except Exception as e:
-            print(e)
+        if not 0 < len(name) <= 40:
+            raise ValueError(
+                "Нельзя добавить товар, если в его названии нет символов или их больше 40"
+            )
+        if name not in self.__item_price:
+            raise NameError("Позиция отсутствует в товарном справочнике")
+        self.__name_items.append(name)
+        new_number_items = self.number_items + 1
+        self.number_items = new_number_items
 
     # 3. Удалить товар из чека
     def delete_item_from_check(self, name):
